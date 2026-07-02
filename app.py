@@ -48,9 +48,14 @@ st.set_page_config(
 def apply_styling():
     st.markdown(f"""
     <style>
-        /* Global font styling */
-        * {{
+        /* Global font styling (scoped so Material icon fonts keep working) */
+        html, body, p, h1, h2, h3, h4, h5, h6, li, label, input, textarea, button, td, th, div.stMarkdown {{
             font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif !important;
+        }}
+
+        /* Keep Streamlit's Material icon ligatures rendering as icons, not words */
+        [data-testid="stIconMaterial"], span[translate="no"] {{
+            font-family: 'Material Symbols Rounded' !important;
         }}
         
         /* Main header styling - like the "You have 1 saved jobs" header */
@@ -269,8 +274,8 @@ with tabs[0]:
         st.subheader("Upload Resume")
         st.markdown(f"""
         <div style="background-color: {COLORS["panel_bg"]}; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-        <p style="margin-bottom: 10px;">Upload your resume in PDF, DOCX, or TXT format.</p>
-        <p>We'll analyze your resume and extract key information to help you find matching jobs.</p>
+        <p style="margin-bottom: 10px; color: #333333;">Upload your resume in PDF, DOCX, or TXT format.</p>
+        <p style="color: #333333;">We'll analyze your resume and extract key information to help you find matching jobs.</p>
         </div>
         """, unsafe_allow_html=True)
         
