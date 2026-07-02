@@ -12,12 +12,8 @@ from langchain.chains import RetrievalQA
 from langchain.llms import OpenAI
 from config import OPENAI_API_KEY
 
-# Load spaCy model
-try:
-    nlp = spacy.load("en_core_web_lg")
-except:
-    os.system("python -m spacy download en_core_web_lg")
-    nlp = spacy.load("en_core_web_lg")
+# Load spaCy model (installed at build time via requirements.txt)
+nlp = spacy.load("en_core_web_md")
 
 class ResumeParser:
     """Enhanced tool for parsing resume files and extracting structured information."""
