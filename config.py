@@ -18,28 +18,28 @@ JOB_PLATFORMS = ["LinkedIn", "Indeed", "Glassdoor", "ZipRecruiter", "Monster"]
 
 COLORS = {
     # Primary palette
-    "primary": "#0E6E78",      # Deep harbor teal for main elements and headers
-    "secondary": "#12909E",    # Medium teal for secondary elements
-    "tertiary": "#79C6CE",     # Light teal for tertiary elements
+    "primary": "#5A189A",      # Deep violet for main elements and headers
+    "secondary": "#7B2CBF",    # Medium violet for secondary elements
+    "tertiary": "#C77DFF",     # Light violet for tertiary elements
 
     # Accent colors
-    "accent": "#BE3E6E",       # Berry for highlighting
-    "accent1": "#33788A",      # Slate teal for subtler accents
-    "accent2": "#3FA98F",      # Seafoam for highlighting information
-    "accent3": "#BE3E6E",      # Berry for call-to-action buttons
+    "accent": "#9D4EDD",       # Bright violet for highlighting
+    "accent1": "#6247AA",      # Slate violet for subtler accents
+    "accent2": "#B388EB",      # Lavender for highlighting information
+    "accent3": "#7B2CBF",      # Vivid violet for call-to-action buttons
 
     # Functional colors
     "success": "#2E9E77",      # Sea green for success messages
     "warning": "#DFA126",      # Golden amber for warnings
     "error": "#D64545",        # Bright red for errors
-    "info": "#1178A8",         # Information blue
+    "info": "#6247AA",         # Information violet
 
     # Background and text - BASIC PROFESSIONAL STYLE
-    "background": "#F3F8F8",   # Light teal-gray for backgrounds
+    "background": "#F7F4FB",   # Light violet-gray for backgrounds
     "card_bg": "#FFFFFF",      # White for card backgrounds
     "text": "#FFFFFF",         # White for text on dark backgrounds
-    "text_dark": "#0C2A2E",    # Deep teal-black for text on light backgrounds
-    "text_light": "#3C5257",   # Dark teal-gray for secondary text
+    "text_dark": "#13233B",    # Ink navy for text on light backgrounds
+    "text_light": "#4A4458",   # Dark violet-gray for secondary text
     "text_red": "#E05A5A",     # Red color for high-contrast text
-    "panel_bg": "#E9F4F4"      # Light teal background for panels
+    "panel_bg": "#EFE7F9"      # Light violet background for panels
 }

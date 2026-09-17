@@ -47,7 +47,7 @@ def display_resume_analysis_summary(resume_data):
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("""<h4 style="color: #0B5560; margin-bottom: 10px;">Strengths</h4>""", unsafe_allow_html=True)
+        st.markdown("""<h4 style="color: #3C096C; margin-bottom: 10px;">Strengths</h4>""", unsafe_allow_html=True)
         strengths = []
         # Identify strengths based on skills and experience
         if any(len(categorized_skills[cat]) > 0 for cat in ["Programming", "Data Science"]):
@@ -61,20 +61,20 @@ def display_resume_analysis_summary(resume_data):
         if strengths:
             for strength in strengths:
                 st.markdown(
-                    f"""<div style="background-color: #0E6E78; color: white; padding: 12px; 
+                    f"""<div style="background-color: #5A189A; color: white; padding: 12px; 
                     border-radius: 6px; margin-bottom: 10px; font-weight: 500;">
                     ✅ {strength}</div>""", 
                     unsafe_allow_html=True
                 )
         else:
             st.markdown(
-                """<div style="background-color: #46626B; color: white; padding: 12px; 
+                """<div style="background-color: #554E6F; color: white; padding: 12px; 
                 border-radius: 6px;">Not enough information to determine strengths</div>""", 
                 unsafe_allow_html=True
             )
     
     with col2:
-        st.markdown("""<h4 style="color: #7E2A4C; margin-bottom: 10px;">Areas to Improve</h4>""", unsafe_allow_html=True)
+        st.markdown("""<h4 style="color: #3C096C; margin-bottom: 10px;">Areas to Improve</h4>""", unsafe_allow_html=True)
         improvements = []
         # Identify improvement areas
         if not any("git" in skill.lower() for skill in skills):
@@ -144,9 +144,9 @@ def display_extracted_information(resume_data):
     
     with info_col1:
         # Display contact info
-        st.markdown("""<h4 style="color: #3C5257; margin-bottom: 10px;">📞 Contact Information</h4>""", unsafe_allow_html=True)
+        st.markdown("""<h4 style="color: #4A4458; margin-bottom: 10px;">📞 Contact Information</h4>""", unsafe_allow_html=True)
         contact_info = resume_data.get("contact_info", {})
-        contact_html = """<div style="background-color: #0B5560; color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">"""
+        contact_html = """<div style="background-color: #3C096C; color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">"""
         
         if contact_info and (contact_info.get("email") or contact_info.get("phone")):
             if contact_info.get("email"):
@@ -160,9 +160,9 @@ def display_extracted_information(resume_data):
         st.markdown(contact_html, unsafe_allow_html=True)
         
         # Display education
-        st.markdown("""<h4 style="color: #3C5257; margin-bottom: 10px;">🎓 Education</h4>""", unsafe_allow_html=True)
+        st.markdown("""<h4 style="color: #4A4458; margin-bottom: 10px;">🎓 Education</h4>""", unsafe_allow_html=True)
         education = resume_data.get("education", [])
-        education_html = """<div style="background-color: #33788A; color: white; padding: 15px; border-radius: 8px;">"""
+        education_html = """<div style="background-color: #6247AA; color: white; padding: 15px; border-radius: 8px;">"""
         
         if education:
             for edu in education:
@@ -175,7 +175,7 @@ def display_extracted_information(resume_data):
     
     with info_col2:
         # Display skills with high-contrast horizontal layout
-        st.markdown("""<h4 style="color: #3C5257; margin-bottom: 10px;">🛠️ Skills</h4>""", unsafe_allow_html=True)
+        st.markdown("""<h4 style="color: #4A4458; margin-bottom: 10px;">🛠️ Skills</h4>""", unsafe_allow_html=True)
         skills = resume_data.get("skills", [])
         
         if skills:
@@ -184,7 +184,7 @@ def display_extracted_information(resume_data):
             
             # Add each skill with a high-contrast background
             for skill in skills:
-                skills_html += f"""<div style="background-color: #12909E; color: white; 
+                skills_html += f"""<div style="background-color: #7B2CBF; color: white; 
                 padding: 8px 12px; border-radius: 20px; font-weight: 500; margin-bottom: 8px;">
                 {skill}</div>"""
             
@@ -192,13 +192,13 @@ def display_extracted_information(resume_data):
             st.markdown(skills_html, unsafe_allow_html=True)
         else:
             st.markdown(
-                """<div style="background-color: #46626B; color: white; padding: 15px; 
+                """<div style="background-color: #554E6F; color: white; padding: 15px; 
                 border-radius: 8px;">No skills detected.</div>""", 
                 unsafe_allow_html=True
             )
         
         # Display experience using the organized categories function
-        st.markdown("""<h4 style="color: #3C5257; margin-bottom: 10px;">💼 Experience</h4>""", unsafe_allow_html=True)
+        st.markdown("""<h4 style="color: #4A4458; margin-bottom: 10px;">💼 Experience</h4>""", unsafe_allow_html=True)
         experience = resume_data.get("experience", [])
         
         if experience:
@@ -210,17 +210,17 @@ def display_extracted_information(resume_data):
                 if items:
                     # Set category-specific colors
                     if "Programming" in category:
-                        bg_color = "#0E6E78"  # Deep harbor teal
+                        bg_color = "#5A189A"  # Deep violet
                     elif "Machine Learning" in category or "AI" in category:
-                        bg_color = "#33788A"  # Slate teal
+                        bg_color = "#6247AA"  # Slate violet
                     elif "Cloud" in category:
-                        bg_color = "#0B5560"  # Deep teal
+                        bg_color = "#3C096C"  # Deep violet
                     elif "Data" in category:
-                        bg_color = "#A63762"  # Deep berry
+                        bg_color = "#6D23B0"  # Vivid violet
                     elif "Companies" in category:
-                        bg_color = "#7E2A4C"  # Darkest berry
+                        bg_color = "#7B2CBF"  # Bright violet
                     else:
-                        bg_color = "#46626B"  # Deep blue-grey
+                        bg_color = "#554E6F"  # Deep violet-grey
                     
                     # Create category header
                     st.markdown(
@@ -244,7 +244,7 @@ def display_extracted_information(resume_data):
                     st.markdown(items_html, unsafe_allow_html=True)
         else:
             st.markdown(
-                """<div style="background-color: #46626B; color: white; padding: 15px; 
+                """<div style="background-color: #554E6F; color: white; padding: 15px; 
                 border-radius: 8px;">No experience information detected.</div>""", 
                 unsafe_allow_html=True
             )
@@ -284,17 +284,17 @@ def display_formatted_analysis(analysis):
     
     # Display each section in a formatted way with improved visibility
     section_colors = {
-        "Overall Assessment": "#33788A",
-        "Content Improvements": "#0B5560",
+        "Overall Assessment": "#6247AA",
+        "Content Improvements": "#3C096C",
         "Skills": "#1F7A63",
-        "Format Suggestions": "#7E2A4C",
-        "ATS Optimization": "#A63762"
+        "Format Suggestions": "#5A189A",
+        "ATS Optimization": "#6D23B0"
     }
     
     for section, content in sections.items():
         if content.strip():
             st.subheader(section)
-            bg_color = section_colors.get(section, "#33788A")
+            bg_color = section_colors.get(section, "#6247AA")
             st.markdown(
                 f"""<div style='background-color: {bg_color}; color: white; 
                 padding: 15px; border-radius: 8px; margin-top: 10px; 
@@ -313,7 +313,7 @@ def format_job_description(description):
         str: Formatted HTML for the job description
     """
     if not description:
-        return """<div style="background-color: #46626B; color: white; padding: 15px; 
+        return """<div style="background-color: #554E6F; color: white; padding: 15px; 
                 border-radius: 8px; margin-top: 15px;">No description available</div>"""
     
     # Clean up any problematic formatting
@@ -321,7 +321,7 @@ def format_job_description(description):
     
     # Wrap the description in a styled div with high contrast
     formatted_description = f"""
-    <div style="background-color: #17272A; color: white; padding: 15px; 
+    <div style="background-color: #1D1832; color: white; padding: 15px; 
     border-radius: 8px; margin-top: 15px; line-height: 1.5; font-size: 16px;">
         {description}
     </div>
@@ -339,7 +339,7 @@ def display_matching_skills(skills, job_description):
     """
     if not skills or not job_description:
         st.markdown(
-            """<div style="background-color: #46626B; color: white; padding: 12px; 
+            """<div style="background-color: #554E6F; color: white; padding: 12px; 
             border-radius: 6px;">No matching skills could be determined.</div>""", 
             unsafe_allow_html=True
         )
@@ -353,11 +353,11 @@ def display_matching_skills(skills, job_description):
             matching_skills.append(skill)
     
     if matching_skills:
-        st.markdown("""<h4 style="color: #0B5560; margin-bottom: 10px;">Skills Matching Job Description</h4>""", unsafe_allow_html=True)
+        st.markdown("""<h4 style="color: #3C096C; margin-bottom: 10px;">Skills Matching Job Description</h4>""", unsafe_allow_html=True)
         skills_html = """<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">"""
         
         for skill in matching_skills[:5]:  # Show top 5 matching skills
-            skills_html += f"""<div style="background-color: #0E6E78; color: white; 
+            skills_html += f"""<div style="background-color: #5A189A; color: white; 
             padding: 8px 12px; border-radius: 20px; font-weight: 500; margin-bottom: 8px;">
             ✅ {skill}</div>"""
         
@@ -365,7 +365,7 @@ def display_matching_skills(skills, job_description):
         st.markdown(skills_html, unsafe_allow_html=True)
     else:
         st.markdown(
-            """<div style="background-color: #46626B; color: white; padding: 12px; 
+            """<div style="background-color: #554E6F; color: white; padding: 12px; 
             border-radius: 6px;">No matching skills detected in the job description.</div>""", 
             unsafe_allow_html=True
         )
@@ -383,7 +383,7 @@ def display_matching_skills(skills, job_description):
             missing_skills.append(tech)
     
     if missing_skills:
-        st.markdown("""<h4 style="color: #7E2A4C; margin-bottom: 10px;">Skills to Emphasize or Develop</h4>""", unsafe_allow_html=True)
+        st.markdown("""<h4 style="color: #3C096C; margin-bottom: 10px;">Skills to Emphasize or Develop</h4>""", unsafe_allow_html=True)
         missing_html = """<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">"""
         
         for skill in missing_skills[:5]:  # Show top 5 missing skills
@@ -416,7 +416,7 @@ def apply_styling():
         
         /* Blue header panels styling */
         div[style*="background-color: {COLORS['primary']}"],
-        div[style*="background-color: rgb(14, 110, 120)"],
+        div[style*="background-color: rgb(90, 24, 154)"],
         [data-testid="stForm"] h3,
         .blue-header {{
             color: white !important;
@@ -470,7 +470,7 @@ def apply_styling():
         
         .stButton>button:hover,
         button[kind="primary"]:hover {{
-            background-color: #A63762 !important;
+            background-color: #6D23B0 !important;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
             transform: translateY(-1px) !important;
         }}
@@ -487,7 +487,7 @@ def apply_styling():
         
         /* Table headers */
         th, thead tr th {{
-            background-color: #17272A !important;
+            background-color: #1D1832 !important;
             color: white !important;
             font-weight: bold !important;
             padding: 12px 8px !important;
@@ -498,14 +498,14 @@ def apply_styling():
         /* Table cells */
         td, tbody tr td {{
             padding: 12px 8px !important;
-            border-bottom: 1px solid #E2ECEC !important;
+            border-bottom: 1px solid #EBE6F5 !important;
             background-color: white !important;
             color: black !important;
         }}
         
         /* Alternate row styling */
         tbody tr:nth-child(even) td {{
-            background-color: #F7FBFB !important;
+            background-color: #F9F7FC !important;
         }}
         
         /* Tab navigation */
@@ -559,7 +559,7 @@ def apply_styling():
         
         /* Expandable sections */
         .stExpander {{
-            border: 1px solid #E2ECEC !important;
+            border: 1px solid #EBE6F5 !important;
             border-radius: 8px !important;
             overflow: hidden !important;
         }}
@@ -570,7 +570,7 @@ def apply_styling():
         
         .stExpander summary {{
             padding: 15px !important;
-            background-color: #F3F8F8 !important;
+            background-color: #F7F4FB !important;
             font-weight: bold !important;
             color: {COLORS["primary"]} !important;
         }}
