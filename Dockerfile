@@ -7,9 +7,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         curl build-essential \
     && rm -rf /var/lib/apt/lists/*
 
+# en_core_web_md is installed straight from requirements.txt (the model the code
+# loads); no separate spacy download step is needed.
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt \
-    && python -m spacy download en_core_web_lg
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
