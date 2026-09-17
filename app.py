@@ -69,7 +69,7 @@ def apply_styling():
         
         /* Blue header panels styling - consistent across all pages */
         div[style*="background-color: {COLORS['primary']}"],
-        div[style*="background-color: rgb(28, 78, 128)"],
+        div[style*="background-color: rgb(14, 110, 120)"],
         [data-testid="stForm"] h3,
         .blue-header {{
             color: white !important;
@@ -110,7 +110,7 @@ def apply_styling():
         
         .stButton>button:hover,
         button[kind="primary"]:hover {{
-            background-color: #E67E22 !important;
+            background-color: #A63762 !important;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
             transform: translateY(-1px) !important;
         }}
@@ -127,7 +127,7 @@ def apply_styling():
         
         /* Table headers like "Saved Jobs" tab */
         th, thead tr th {{
-            background-color: #222222 !important;
+            background-color: #17272A !important;
             color: white !important;
             font-weight: bold !important;
             padding: 12px 8px !important;
@@ -138,14 +138,14 @@ def apply_styling():
         /* Table cells like "Saved Jobs" tab */
         td, tbody tr td {{
             padding: 12px 8px !important;
-            border-bottom: 1px solid #EEEEEE !important;
+            border-bottom: 1px solid #E2ECEC !important;
             background-color: white !important;
             color: black !important;
         }}
         
         /* Alternate row styling */
         tbody tr:nth-child(even) td {{
-            background-color: #f9f9f9 !important;
+            background-color: #F7FBFB !important;
         }}
         
         /* Main navigation tabs */
@@ -272,8 +272,8 @@ with tabs[0]:
         st.subheader("Upload Resume")
         st.markdown(f"""
         <div style="background-color: {COLORS["panel_bg"]}; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-        <p style="margin-bottom: 10px; color: #333333;">Upload your resume in PDF, DOCX, or TXT format.</p>
-        <p style="color: #333333;">We'll analyze your resume and extract key information to help you find matching jobs.</p>
+        <p style="margin-bottom: 10px; color: #3C5257;">Upload your resume in PDF, DOCX, or TXT format.</p>
+        <p style="color: #3C5257;">We'll analyze your resume and extract key information to help you find matching jobs.</p>
         </div>
         """, unsafe_allow_html=True)
         
