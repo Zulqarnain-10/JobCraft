@@ -42,8 +42,9 @@ class SerpApiSearcher:
                 "chips": f"date_posted:{days_ago}d"  # Add date filter
             }
             
-            # Make API request
-            response = requests.get(url, params=params)
+            # Make API request. The timeout matters: without one, a stalled
+            # connection hangs the whole Streamlit run with the spinner up.
+            response = requests.get(url, params=params, timeout=30)
             data = response.json()
             
             # Check for API errors
