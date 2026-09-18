@@ -39,12 +39,13 @@ class SerpApiSearcher:
             if platform and platform.lower() != "all":
                 query += f" {platform}"
                 
+            # No "chips" date filter: Google Jobs dropped filter chips in 2024 and
+            # SerpAPI removed support, so sending one fails the whole search.
             params = {
                 "engine": "google_jobs",
                 "q": query,
                 "api_key": SERPAPI_API_KEY,
-                "hl": "en",
-                "chips": f"date_posted:{days_ago}d"  # Add date filter
+                "hl": "en"
             }
             
             # Make API request. The timeout matters: without one, a stalled
