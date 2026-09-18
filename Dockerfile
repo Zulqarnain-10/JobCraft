@@ -18,8 +18,11 @@ EXPOSE 8501
 
 # Hosted demos (e.g. Hugging Face Spaces) serve the app inside an iframe behind a
 # proxy; XSRF protection has to be off there or file uploads never complete.
+# PYTHONUNBUFFERED: without it, print() diagnostics sit in a stdout buffer and
+# never reach the container logs.
 ENV STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION=false \
-    STREAMLIT_SERVER_ENABLE_CORS=false
+    STREAMLIT_SERVER_ENABLE_CORS=false \
+    PYTHONUNBUFFERED=1
 
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health || exit 1
 

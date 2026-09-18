@@ -46,9 +46,19 @@ st.set_page_config(
 def apply_styling():
     st.markdown(f"""
     <style>
-        /* Global font styling (scoped so Material icon fonts keep working) */
-        html, body, p, h1, h2, h3, h4, h5, h6, li, label, input, textarea, button, td, th, div.stMarkdown {{
-            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif !important;
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Fraunces:ital,opsz,wght@1,9..144,400..700&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
+
+        /* Brand type: Plus Jakarta Sans body, Bricolage Grotesque display, Plex Mono data
+           (scoped so Material icon fonts keep working) */
+        html, body, p, li, label, input, textarea, button, td, th, div.stMarkdown {{
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', 'Roboto', 'Arial', sans-serif !important;
+        }}
+        h1, h2, h3, h4, h5, h6 {{
+            font-family: 'Bricolage Grotesque', 'Segoe UI', 'Roboto', 'Arial', sans-serif !important;
+            letter-spacing: -0.01em !important;
+        }}
+        code, pre, kbd, [data-testid="stMetricValue"] {{
+            font-family: 'IBM Plex Mono', 'Consolas', monospace !important;
         }}
 
         /* Keep Streamlit's Material icon ligatures rendering as icons, not words */
@@ -221,6 +231,10 @@ st.markdown(f"""
 <div style='text-align:center; padding: 1.5rem 0; 
 background: linear-gradient(90deg, {COLORS["primary"]}, {COLORS["secondary"]}, {COLORS["tertiary"]}); 
 border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);'>
+    <p style='display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 0 0.85rem;'>
+    <svg viewBox='0 0 64 64' width='26' height='26' aria-hidden='true' focusable='false'><rect width='64' height='64' rx='14' fill='#0F1F38'/><path d='M12 13 H44 V22.5 L25.5 41.5 H44 V51 H12 V41.5 L30.5 22.5 H12 Z' fill='#EAF0F9'/><circle cx='51.5' cy='45.5' r='5.5' fill='#C77DFF'/></svg>
+    <span style='color: white; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.05rem;'>Syed Zulqarnain Hassan<span style='color: #C77DFF;'>.</span></span>
+    </p>
     <h1 style='color: white; font-size: 2.5rem; margin-bottom: 0.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);'>
     Professional Job Search Assistant</h1>
     <p style='color: white; font-size: 1.2rem; font-weight: 500; margin: 0.5rem 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);'>
@@ -1634,9 +1648,21 @@ with tabs[3]:
 # Footer
 st.markdown("---")
 st.markdown(
-    f"""<div style='text-align: center; background: linear-gradient(90deg, {COLORS["primary"]}, {COLORS["secondary"]}); 
-    color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);'>
-    <p style="margin: 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">Professional Job Search Assistant | Built with Streamlit | © {datetime.now().year}</p>
+    f"""<div style='text-align: center; background: linear-gradient(90deg, {COLORS["primary"]}, {COLORS["secondary"]});
+    color: white; padding: 18px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);'>
+    <p style='display: flex; align-items: center; justify-content: center; gap: 9px; margin: 0 0 6px;'>
+    <svg viewBox='0 0 64 64' width='22' height='22' aria-hidden='true' focusable='false'><rect width='64' height='64' rx='14' fill='#0F1F38'/><path d='M12 13 H44 V22.5 L25.5 41.5 H44 V51 H12 V41.5 L30.5 22.5 H12 Z' fill='#EAF0F9'/><circle cx='51.5' cy='45.5' r='5.5' fill='#C77DFF'/></svg>
+    <span style='font-family: "Bricolage Grotesque", sans-serif; font-weight: 800;'>Syed Zulqarnain Hassan<span style='color: #C77DFF;'>.</span></span>
+    <span style='opacity: .85;'>&middot; Data Scientist &amp; AI/ML Engineer</span>
+    </p>
+    <p style='margin: 0 0 8px;'>
+    <a href='https://github.com/Zulqarnain-10/JobCraft' style='color: white; text-decoration: underline;'>GitHub repo</a>
+    <span style='opacity: .6; margin: 0 6px;'>&middot;</span>
+    <a href='https://zulqarnainhassan.com' style='color: white; text-decoration: underline;'>zulqarnainhassan.com</a>
+    <span style='opacity: .6; margin: 0 6px;'>&middot;</span>
+    <a href='https://www.linkedin.com/in/syedzulqarnainh' style='color: white; text-decoration: underline;'>LinkedIn</a>
+    </p>
+    <p style="margin: 0; opacity: .85; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">Professional Job Search Assistant | Built with Streamlit | © {datetime.now().year}</p>
     </div>""",
     unsafe_allow_html=True
 )
