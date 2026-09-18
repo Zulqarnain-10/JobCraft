@@ -516,10 +516,14 @@ with tabs[1]:
                         # Get potential job title
                         job_title = keyword_extractor.extract_job_title(st.session_state.resume_data)
                         
-                        # Job title plus a few top keywords; a query stuffed with
-                        # every extracted keyword returns nothing from Google Jobs
-                        query_terms = ([job_title] if job_title else []) + list(search_keywords)[:3]
-                        resume_based_query = " ".join(query_terms)
+                        # The job title alone is the search query. Google Jobs matches
+                        # query terms conjunctively, so any keyword stuffing (verified
+                        # against SerpAPI search records) yields "Fully empty" results.
+                        # Keywords still drive the match scoring, just not the search.
+                        if job_title:
+                            resume_based_query = job_title
+                        else:
+                            resume_based_query = " ".join(list(search_keywords)[:2])
                         
                         # Display the extracted keywords
                         st.subheader("Extracted Search Terms")
@@ -550,19 +554,21 @@ with tabs[1]:
                         with st.spinner(f"Searching for jobs matching your resume profile..."):
                             serp_api_searcher = resources["serp_api_searcher"]
                             resume_based_jobs = []
-                            
-                            # Search on all platforms
-                            for platform in JOB_PLATFORMS:
-                                try:
-                                    platform_jobs = serp_api_searcher.search_jobs(
-                                        resume_based_query,
-                                        default_location,
-                                        platform=platform,
-                                        count=5  # Limit to 5 jobs per platform
-                                    )
-                                    resume_based_jobs.extend(platform_jobs)
-                                except Exception as e:
-                                    st.error(f"Error searching jobs on {platform}: {str(e)}")
+
+                            # One broad Google Jobs search. Per-platform queries append the
+                            # platform name to the query, which (verified against SerpAPI
+                            # records) makes Google return zero jobs - and burns five API
+                            # searches for one click. Each result still carries its own
+                            # source platform in "via".
+                            try:
+                                resume_based_jobs = serp_api_searcher.search_jobs(
+                                    resume_based_query,
+                                    default_location,
+                                    platform=None,
+                                    count=25
+                                )
+                            except Exception as e:
+                                st.error(f"Error searching jobs: {str(e)}")
                             
                             # Update job results
                             st.session_state.job_results = resume_based_jobs
