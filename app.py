@@ -38,7 +38,7 @@ st.set_page_config(
     page_title="JobCraft",
     page_icon="💼",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 
@@ -191,6 +191,58 @@ def apply_styling():
             box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
             transform: translateY(-2px) !important;
         }}
+
+        /* Hide Streamlit chrome so the demo reads as a product, not a notebook */
+        #MainMenu, footer, [data-testid="stToolbar"] {{
+            visibility: hidden !important;
+        }}
+
+        /* The top decoration strip carries the brand gradient instead of Streamlit's default */
+        [data-testid="stDecoration"] {{
+            background: linear-gradient(90deg, {COLORS["primary"]}, {COLORS["secondary"]}, {COLORS["tertiary"]}) !important;
+        }}
+
+        /* Soft violet-tinted app ground so white cards read as cards */
+        [data-testid="stAppViewContainer"] {{
+            background-color: {COLORS["background"]} !important;
+        }}
+
+        /* File-upload dropzone in the brand language */
+        [data-testid="stFileUploaderDropzone"] {{
+            background-color: #FFFFFF !important;
+            border: 1.5px dashed {COLORS["accent"]} !important;
+            border-radius: 10px !important;
+        }}
+
+        /* Expanders: rounded, quiet borders, violet on hover */
+        [data-testid="stExpander"] details {{
+            border: 1px solid #E4DBF3 !important;
+            border-radius: 10px !important;
+            background-color: #FFFFFF !important;
+        }}
+        [data-testid="stExpander"] summary:hover {{
+            color: {COLORS["secondary"]} !important;
+        }}
+
+        /* Inputs and selects: rounded with a violet focus ring */
+        .stTextInput input, .stTextArea textarea, div[data-baseweb="select"] > div {{
+            border-radius: 8px !important;
+        }}
+        .stTextInput input:focus, .stTextArea textarea:focus {{
+            border-color: {COLORS["secondary"]} !important;
+            box-shadow: 0 0 0 2px rgba(123, 44, 191, 0.25) !important;
+        }}
+
+        /* Status boxes and progress in the palette */
+        [data-testid="stAlert"] {{
+            border-radius: 10px !important;
+        }}
+        .stSpinner > div > div {{
+            border-top-color: {COLORS["secondary"]} !important;
+        }}
+        [data-testid="stProgressBar"] div[role="progressbar"] > div {{
+            background-color: {COLORS["secondary"]} !important;
+        }}
     </style>
     """, unsafe_allow_html=True)
 # Apply custom styling
@@ -235,8 +287,10 @@ border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1)
     <svg viewBox='0 0 64 64' width='26' height='26' aria-hidden='true' focusable='false'><rect width='64' height='64' rx='14' fill='#0F1F38'/><path d='M12 13 H44 V22.5 L25.5 41.5 H44 V51 H12 V41.5 L30.5 22.5 H12 Z' fill='#EAF0F9'/><circle cx='51.5' cy='45.5' r='5.5' fill='#C77DFF'/></svg>
     <span style='color: white; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.05rem;'>Syed Zulqarnain Hassan<span style='color: #C77DFF;'>.</span></span>
     </p>
-    <h1 style='color: white; font-size: 2.75rem; margin-bottom: 0.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);'>
+    <h1 style='color: white; font-size: 2.75rem; margin-bottom: 0.35rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);'>
     JobCraft</h1>
+    <p style='color: #EFE7F9; font-family: "Fraunces", serif; font-style: italic; font-size: 1.3rem; margin: 0 0 0.9rem;'>
+    Find work that fits.</p>
     <p style='color: white; font-size: 1.2rem; font-weight: 500; margin: 0.5rem 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);'>
     <span style='background-color: rgba(0,0,0,0.15); padding: 4px 12px; border-radius: 20px; margin: 0 5px;'>
     AI-powered job search</span> 

@@ -36,9 +36,9 @@ From a single uploaded resume, JobCraft:
 
 `Python` · `Streamlit` · `LangChain` · `OpenAI API (gpt-3.5-turbo)` · `FAISS` · `spaCy` · `SerpAPI` · `PyPDF2` · `python-docx` · `BeautifulSoup` · `pandas`
 
-## Demo
+## Live demo
 
-_Screenshot / short GIF coming soon — run locally (below) and capture the Resume Analysis and Job Search tabs here._
+**Try it now: [syedzulqarnainh-jobcraft.hf.space](https://syedzulqarnainh-jobcraft.hf.space)** — hosted on [Hugging Face Spaces](https://huggingface.co/spaces/syedzulqarnainh/jobcraft). Upload a resume, get an instant analysis, then search live listings and see a per-job match score with key matches, gaps, and recommendations.
 
 ## How to run
 
@@ -49,8 +49,7 @@ cd JobCraft
 
 # 2. Environment + dependencies
 python -m venv venv && source venv/bin/activate      # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-python -m spacy download en_core_web_lg
+pip install -r requirements.txt                       # includes the en_core_web_md spaCy model
 
 # 3. API keys
 cp .env.example .env                                  # then add your OpenAI + SerpAPI keys
@@ -63,20 +62,9 @@ The app opens at `http://localhost:8501`.
 
 ## Deployment
 
-JobCraft ships with a **Dockerfile** and a **GitHub Actions** workflow
-(`.github/workflows/deploy.yml`) for CI/CD to **AWS EC2** via a self-hosted runner:
-build the image → push to **Amazon ECR** → run the container behind an **Nginx** reverse proxy.
+The live demo runs as a **Docker** container on **Hugging Face Spaces** (see the `Dockerfile`); the Space rebuilds on every push to its `main`. `OPENAI_API_KEY` and `SERPAPI_API_KEY` are set as Space secrets, never committed.
 
-To deploy, set these repository secrets and push to `main`:
-
-| Secret | Purpose |
-| --- | --- |
-| `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` | IAM user with ECR + EC2 access |
-| `AWS_REGION` | e.g. `us-east-1` |
-| `ECR_REPOSITORY` | Amazon ECR repository name |
-| `OPENAI_API_KEY` / `SERPAPI_API_KEY` | injected into the running container |
-
-Run locally (above) to confirm everything works before deploying.
+The container is host-agnostic: the same image runs on AWS EC2 (build → push to Amazon ECR → run behind an Nginx reverse proxy) or any other Docker host.
 
 ## Roadmap
 
