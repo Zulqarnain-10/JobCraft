@@ -1,6 +1,7 @@
 # 
 
-from langchain.llms import OpenAI
+# gpt-3.5-turbo is a chat model, so the client must target the chat endpoint
+from langchain.chat_models import ChatOpenAI
 from config import OPENAI_API_KEY, LLM_MODEL
 
 class ResumeAgent:
@@ -26,7 +27,8 @@ class ResumeAgent:
             
         try:
             # Initialize OpenAI client
-            client = OpenAI(api_key=self.api_key, model=self.model)
+            client = ChatOpenAI(openai_api_key=self.api_key, model_name=self.model,
+                                max_tokens=1500, temperature=0.7)
             
             # Extract key data for analysis
             skills = resume_data.get("skills", [])
@@ -77,15 +79,7 @@ class ResumeAgent:
             """
             
             # Get analysis from OpenAI
-            response = client.create(
-                model=self.model,
-                prompt=prompt,
-                max_tokens=1500,
-                temperature=0.7
-            )
-            
-            # Return the analysis
-            return response.choices[0].message.content.strip()
+            return client.invoke(prompt).content.strip()
             
         except Exception as e:
             print(f"Error in resume analysis: {e}")

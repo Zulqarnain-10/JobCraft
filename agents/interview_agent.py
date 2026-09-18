@@ -1,5 +1,6 @@
 
-from langchain.llms import OpenAI
+# gpt-3.5-turbo is a chat model, so the client must target the chat endpoint
+from langchain.chat_models import ChatOpenAI
 from config import OPENAI_API_KEY, LLM_MODEL
 
 class InterviewAgent:
@@ -27,7 +28,8 @@ class InterviewAgent:
             
         try:
             # Initialize OpenAI client
-            client = OpenAI(api_key=self.api_key, model=self.model)
+            client = ChatOpenAI(openai_api_key=self.api_key, model_name=self.model,
+                                max_tokens=2500, temperature=0.7)
             
             # Extract job details
             job_title = job_data.get('title', 'Unknown Position')
@@ -81,19 +83,14 @@ class InterviewAgent:
             """
             
             # Get questions from OpenAI
-            response = client.create(
-                model=self.model,
-                prompt=prompt,
-                max_tokens=2500,
-                temperature=0.7
-            )
-            
+            response_text = client.invoke(prompt).content
+
             # Parse the response as JSON
             try:
                 import json
                 import re
-                
-                content = response.choices[0].message.content.strip()
+
+                content = response_text.strip()
                 
                 # First try to parse as direct JSON
                 try:

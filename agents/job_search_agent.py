@@ -1,6 +1,7 @@
 
 
-from langchain.llms import OpenAI
+# gpt-3.5-turbo is a chat model, so the client must target the chat endpoint
+from langchain.chat_models import ChatOpenAI
 from utils.job_scraper import JobScraper
 from utils.serp_api_searcher import SerpApiSearcher
 from config import OPENAI_API_KEY, LLM_MODEL, JOB_PLATFORMS
@@ -79,7 +80,8 @@ class JobSearchAgent:
             
         try:
             # Initialize OpenAI client
-            client = OpenAI(api_key=self.api_key, model=self.model)
+            client = ChatOpenAI(openai_api_key=self.api_key, model_name=self.model,
+                                max_tokens=1000, temperature=0.5)
             
             # Extract relevant data
             skills = resume_data.get("skills", [])
@@ -127,21 +129,16 @@ class JobSearchAgent:
             """
             
             # Get analysis from OpenAI
-            response = client.create(
-                model=self.model,
-                prompt=prompt,
-                max_tokens=1000,
-                temperature=0.5
-            )
-            
+            content = client.invoke(prompt).content.strip()
+
             # Parse the response as JSON
             try:
                 import json
-                analysis = json.loads(response.choices[0].message.content.strip())
+                analysis = json.loads(content)
                 return analysis
             except json.JSONDecodeError:
                 # If JSON parsing fails, return the raw text
-                return {"match_analysis": response.choices[0].message.content.strip()}
+                return {"match_analysis": content}
             
         except Exception as e:
             print(f"Error in job match analysis: {e}")
