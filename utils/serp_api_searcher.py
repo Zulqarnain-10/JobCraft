@@ -44,7 +44,9 @@ class SerpApiSearcher:
             
             # Make API request. The timeout matters: without one, a stalled
             # connection hangs the whole Streamlit run with the spinner up.
-            response = requests.get(url, params=params, timeout=30)
+            # SerpAPI queues free-plan searches, so reads can legitimately take
+            # over a minute; 30s proved too tight in production.
+            response = requests.get(url, params=params, timeout=(15, 90))
             data = response.json()
             
             # Check for API errors
