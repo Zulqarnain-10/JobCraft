@@ -35,7 +35,7 @@ from config import COLORS, JOB_PLATFORMS
 
 # Set page configuration with professional appearance
 st.set_page_config(
-    page_title="Professional Job Search Assistant",
+    page_title="JobCraft",
     page_icon="💼",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -235,8 +235,8 @@ border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1)
     <svg viewBox='0 0 64 64' width='26' height='26' aria-hidden='true' focusable='false'><rect width='64' height='64' rx='14' fill='#0F1F38'/><path d='M12 13 H44 V22.5 L25.5 41.5 H44 V51 H12 V41.5 L30.5 22.5 H12 Z' fill='#EAF0F9'/><circle cx='51.5' cy='45.5' r='5.5' fill='#C77DFF'/></svg>
     <span style='color: white; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.05rem;'>Syed Zulqarnain Hassan<span style='color: #C77DFF;'>.</span></span>
     </p>
-    <h1 style='color: white; font-size: 2.5rem; margin-bottom: 0.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);'>
-    Professional Job Search Assistant</h1>
+    <h1 style='color: white; font-size: 2.75rem; margin-bottom: 0.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);'>
+    JobCraft</h1>
     <p style='color: white; font-size: 1.2rem; font-weight: 500; margin: 0.5rem 2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);'>
     <span style='background-color: rgba(0,0,0,0.15); padding: 4px 12px; border-radius: 20px; margin: 0 5px;'>
     AI-powered job search</span> 
@@ -1664,7 +1664,7 @@ st.markdown(
     <span style='opacity: .6; margin: 0 6px;'>&middot;</span>
     <a href='https://www.linkedin.com/in/syedzulqarnainh' style='color: white; text-decoration: underline;'>LinkedIn</a>
     </p>
-    <p style="margin: 0; opacity: .85; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">Professional Job Search Assistant | Built with Streamlit | © {datetime.now().year}</p>
+    <p style="margin: 0; opacity: .85; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">JobCraft | Built with Streamlit | © {datetime.now().year}</p>
     </div>""",
     unsafe_allow_html=True
 )
