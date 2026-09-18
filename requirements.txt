@@ -3,6 +3,8 @@ click==8.1.8
 python-dotenv==1.0.0
 langchain==0.1.6
 langchain-community==0.0.19
+# OpenAIEmbeddings (RAG extraction in resume_parser) tokenizes with tiktoken
+tiktoken==0.5.2
 openai==1.12.0
 # openai 1.12 passes 'proxies' to httpx.Client; httpx 0.28 removed it, which
 # breaks every OpenAI client init at runtime. Keep httpx on the last 0.27.

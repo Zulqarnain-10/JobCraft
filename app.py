@@ -516,8 +516,10 @@ with tabs[1]:
                         # Get potential job title
                         job_title = keyword_extractor.extract_job_title(st.session_state.resume_data)
                         
-                        # Join with spaces
-                        resume_based_query = " ".join(search_keywords)
+                        # Job title plus a few top keywords; a query stuffed with
+                        # every extracted keyword returns nothing from Google Jobs
+                        query_terms = ([job_title] if job_title else []) + list(search_keywords)[:3]
+                        resume_based_query = " ".join(query_terms)
                         
                         # Display the extracted keywords
                         st.subheader("Extracted Search Terms")
