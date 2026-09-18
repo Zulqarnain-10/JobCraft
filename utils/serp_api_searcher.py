@@ -29,8 +29,13 @@ class SerpApiSearcher:
             # Base URL for SerpAPI Google Jobs
             url = "https://serpapi.com/search"
             
-            # Prepare query parameters
-            query = f"{keywords} jobs in {location}"
+            # Prepare query parameters. "jobs in Remote" is not a location Google
+            # Jobs understands and returns nothing; remote roles are found by
+            # asking for "remote jobs" instead.
+            if location and location.strip().lower() in ("remote", "work from home", "anywhere"):
+                query = f"{keywords} remote jobs"
+            else:
+                query = f"{keywords} jobs in {location}"
             if platform and platform.lower() != "all":
                 query += f" {platform}"
                 
